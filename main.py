@@ -66,12 +66,12 @@ plt.show()
 minimum = 0.5
 high = 40
 
-sos = signal.butter(10, [minimum, high], 'band', analog=False)
+sos = signal.butter(10, [minimum, high], btype='band', fs=fs, output='sos')
 bp_filtered_ecg = signal.sosfiltfilt(sos, signal_data)
 
 plt.figure()
-plt.title("Filtered signal using high pass filter")
+plt.title("Band Pass Filtered Signal")
 plt.xlabel("Time (s)")
 plt.ylabel("Amplitude")
-plt.plot(t, bp_filtered_ecg, color='green')
+plt.plot(t, bp_filtered_ecg, color='purple')
 plt.show()
