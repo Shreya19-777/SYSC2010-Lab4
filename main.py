@@ -77,7 +77,13 @@ plt.plot(t, bp_filtered_ecg, color='purple')
 plt.show()
 
 #**********************Section 8 : Feature Extraction*****************************
-peaks, _ = signal.find_peaks(bp_filtered_ecg, height = 0)
+#Finding peaks
+peaks, _ = signal.find_peaks(bp_filtered_ecg, height = 1.0, distance = 100)
+
+#HR estimation calculations
+rr_intervals = np.diff(peaks) / 360
+heart_rate = 60 / np.mean(rr_intervals)
+print(heart_rate)
 
 plt.figure()
 plt.title("Extracted values")
