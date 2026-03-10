@@ -1,4 +1,6 @@
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
 # 1. ECG Signal Generator Function
 def generate_ecg(duration=10, fs=250, heart_rate=72):
