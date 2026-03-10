@@ -75,3 +75,14 @@ plt.xlabel("Time (s)")
 plt.ylabel("Amplitude")
 plt.plot(t, bp_filtered_ecg, color='purple')
 plt.show()
+
+#**********************Section 8 : Feature Extraction*****************************
+peaks, _ = signal.find_peaks(bp_filtered_ecg, height = 0)
+
+plt.figure()
+plt.title("Extracted values")
+plt.xlabel("Time (s)")
+plt.ylabel("Amplitude")
+plt.plot(bp_filtered_ecg, color='purple')
+plt.plot(peaks, bp_filtered_ecg[peaks], "x")
+plt.show()
