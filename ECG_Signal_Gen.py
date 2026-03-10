@@ -70,3 +70,5 @@ data = np.column_stack((t, noisy_ecg))
 df = pd.DataFrame(data, columns=["time","signal"])
 
 df.to_csv("ecg_signal.csv", index=False)
+
+
