@@ -16,7 +16,7 @@ cutoff_freq = 40
 nyquist_f = 0.5 * fs
 normal_cutoff = cutoff_freq / nyquist_f
 
-'''
+
 #Unfiltered plot
 plt.figure()
 plt.title("Unfiltered Signal")
@@ -59,7 +59,7 @@ plt.xlabel("Time (s)")
 plt.ylabel("Amplitude")
 plt.plot(t, hp_filtered_ecg)
 plt.show()
-'''
+
 
 #**********************Section 7 : Band Pass Filtering*****************************
 #0.5 to 40 Hz
@@ -91,4 +91,24 @@ plt.xlabel("Time (s)")
 plt.ylabel("Amplitude")
 plt.plot(bp_filtered_ecg, color='purple')
 plt.plot(peaks, bp_filtered_ecg[peaks], "x")
+plt.show()
+
+#**********************Section 9 : FFT*****************************
+fft_values = np.fft.rfft(signal_data)
+magnitude = np.abs(fft_values)
+sampling_rate = 250
+freq_axis = np.fft.rfftfreq(len(signal_data), d=1/sampling_rate)
+
+fft_unfiltered = np.abs(np.fft.rfft(signal_data))
+fft_filtered = np.abs(np.fft.rfft(bp_filtered_ecg))
+
+plt.figure(figsize=(12, 6))
+plt.plot(freq_axis, fft_unfiltered, label='Unfiltered signal', alpha=0.4, color='red')
+plt.plot(freq_axis, fft_filtered, label='Filtered signal', color='blue')
+plt.title("FFT of Filtered and Unfiltered Signal")
+plt.xlabel("Frequency (Hz)")
+plt.ylabel("Magnitude")
+plt.xlim(0, 60)
+plt.legend()
+plt.grid(True)
 plt.show()
